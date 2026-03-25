@@ -391,7 +391,8 @@ class NEULogin:
             }
             
             login_resp = self.session.post(cas_login_url, data=payload, headers=headers, allow_redirects=True)
-            
+            # 跳过邮箱登陆页面 二次访问即可
+            login_resp = self.session.get(cas_login_url, headers=headers, allow_redirects=True)
             print(f"登录响应状态: {login_resp.status_code}")
             print(f"登录后URL: {login_resp.url}")
             
